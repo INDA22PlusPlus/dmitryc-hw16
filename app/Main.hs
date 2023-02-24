@@ -21,9 +21,9 @@ reverse_list [] = []
 reverse_list list = last list : reverse_list (init list)
 
 -- Probably the most un-haskell code ever created, but i don't have time to fix it
-convert_strings_to_lengths :: [String] -> [Int] -> [Int]
-convert_strings_to_lengths [] ints = ints
-convert_strings_to_lengths strings ints = convert_strings_to_lengths (tail strings) (length (head strings) : ints)
+convert_strings_to_lengths :: [String] -> [Int]
+convert_strings_to_lengths [] = []
+convert_strings_to_lengths strings = length (head strings) : convert_strings_to_lengths (tail strings)
 
 get_median_ints :: [Int] -> Float
 get_median_ints ints = do
@@ -33,7 +33,7 @@ get_median_ints ints = do
       else fromIntegral (ints!!med_idx)
 
 get_median :: [String] -> Float
-get_median strings = get_median_ints (sort (convert_strings_to_lengths (strings) []))
+get_median strings = get_median_ints (sort (convert_strings_to_lengths (strings)))
 
 -- 11 elements list
 list_11 = ["icky", "panoramic", "new", "actually", "spotless", "town", "ready", "wrathful", "legs", "temporary", "brave"]
@@ -49,18 +49,18 @@ main :: IO ()
 --main = print(fib_tail 10 0 1)
 
 -- Reverse testing
-main = print(reverse_list [1..20])
+--main = print(reverse_list [1..20])
 
 -- List median testing
 --main = print(sort (convert_strings_to_lengths list_11 []))
 --main = print(sort (convert_strings_to_lengths list_12 []))
 
---main = do
---    print(sort (convert_strings_to_lengths list_11 []))
---    print(get_median list_11)
---
---    print(sort (convert_strings_to_lengths list_12 []))
---    print(get_median list_12)
+main = do
+    print(sort (convert_strings_to_lengths list_11))
+    print(get_median list_11)
+
+    print(sort (convert_strings_to_lengths list_12))
+    print(get_median list_12)
 
 
 -- Kattis: Aaah! https://open.kattis.com/problems/aaah?editsubmit=10557924
