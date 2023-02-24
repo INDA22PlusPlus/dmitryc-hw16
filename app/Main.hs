@@ -16,9 +16,9 @@ fib_tail 1 _ b = b
 --fib_tail n 1 1 = fib_tail (n - 1) 1 2
 fib_tail n a b = fib_tail (n - 1) b (a + b)
 
-reverse_list :: [a] -> [a] -> [a]
-reverse_list [] new_list = new_list
-reverse_list old_list new_list = reverse_list (tail old_list) ((head old_list) : new_list)
+reverse_list :: [a] -> [a]
+reverse_list [] = []
+reverse_list list = last list : reverse_list (init list)
 
 -- Probably the most un-haskell code ever created, but i don't have time to fix it
 convert_strings_to_lengths :: [String] -> [Int] -> [Int]
@@ -49,18 +49,18 @@ main :: IO ()
 --main = print(fib_tail 10 0 1)
 
 -- Reverse testing
---main = print(reverse_list [1..20] [])
+main = print(reverse_list [1..20])
 
 -- List median testing
 --main = print(sort (convert_strings_to_lengths list_11 []))
 --main = print(sort (convert_strings_to_lengths list_12 []))
 
-main = do
-    print(sort (convert_strings_to_lengths list_11 []))
-    print(get_median list_11)
-
-    print(sort (convert_strings_to_lengths list_12 []))
-    print(get_median list_12)
+--main = do
+--    print(sort (convert_strings_to_lengths list_11 []))
+--    print(get_median list_11)
+--
+--    print(sort (convert_strings_to_lengths list_12 []))
+--    print(get_median list_12)
 
 
 -- Kattis: Aaah! https://open.kattis.com/problems/aaah?editsubmit=10557924
